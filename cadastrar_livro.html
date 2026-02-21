@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Cadastrar Livro</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+background:#f4f6f9;
+}
+
+.menu{
+height:100vh;
+width:220px;
+background:#8B0000;
+position:fixed;
+left:-220px;
+top:0;
+transition:0.3s;
+padding-top:20px;
+}
+
+.menu a{
+display:block;
+color:white;
+text-decoration:none;
+padding:15px;
+}
+
+.menu a:hover{
+background:#a00000;
+}
+
+.menu.active{
+left:0;
+}
+
+.abrir{
+font-size:25px;
+cursor:pointer;
+color:#8B0000;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container mt-4">
+
+<span class="abrir" onclick="abrirMenu()">☰</span>
+
+<h2>Cadastrar Livro</h2>
+
+<div class="card p-4 mt-3">
+
+<input id="nome" class="form-control mb-2" placeholder="Nome do livro">
+
+<input id="autor" class="form-control mb-2" placeholder="Autor">
+
+<input id="genero" class="form-control mb-2" placeholder="Gênero">
+
+<input type="file" id="imagem" class="form-control mb-3">
+
+<button class="btn btn-success" onclick="salvarLivro()">Salvar Livro</button>
+
+</div>
+
+</div>
+
+<div id="menu" class="menu">
+
+<a href="javascript:void(0)" onclick="fecharMenu()">⬅ Fechar</a>
+
+<a href="index.html">🏠 Início</a>
+
+<a href="cadastrar_livro.html">📚 Cadastrar Livro</a>
+
+<a href="cadastrar_leitor.html">👤 Cadastrar Leitor</a>
+
+<a href="emprestimo.html">📦 Empréstimo</a>
+
+<a href="livros_emprestados.html">📋 Livros Emprestados</a>
+
+</div>
+
+<script>
+
+function abrirMenu(){
+document.getElementById("menu").classList.add("active")
+}
+
+function fecharMenu(){
+document.getElementById("menu").classList.remove("active")
+}
+
+function salvarLivro(){
+
+let nome=document.getElementById("nome").value
+let autor=document.getElementById("autor").value
+let genero=document.getElementById("genero").value
+let img=document.getElementById("imagem").files[0]
+
+let reader=new FileReader()
+
+reader.onload=function(){
+
+let livros=JSON.parse(localStorage.getItem("livros"))||[]
+
+livros.push({
+
+nome:nome,
+autor:autor,
+genero:genero,
+imagem:reader.result
+
+})
+
+localStorage.setItem("livros",JSON.stringify(livros))
+
+alert("Livro cadastrado")
+
+}
+
+reader.readAsDataURL(img)
+
+}
+
+</script>
+
+</body>
+</html>

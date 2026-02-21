@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Livros</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/app.js"></script>
+</head>
+
+<body>
+
+<div class="sidebar">
+<h2>📚 Biblioteca</h2>
+
+<a href="index.html">menu principal</a>
+<a href="livros.html">Livros</a>
+<a href="leitores.html">Leitores</a>
+<a href="emprestimo.html">Empréstimo</a>
+<a href="emprestados.html">Emprestados</a>
+<a href="relatorio.html">Relatório</a>
+
+</div>
+
+<div class="main">
+
+<h1>Livros Disponíveis</h1>
+
+<a href="cadastrar_livro.html"><button>Cadastrar Livro</button></a>
+
+<table>
+
+<tr>
+<th>Capa</th>
+<th>Título</th>
+<th>Autor</th>
+<th>Status</th>
+</tr>
+
+<tbody id="listaLivros"></tbody>
+
+</table>
+
+</div>
+
+<script>
+
+let tabela = document.getElementById("listaLivros");
+
+livros.forEach(l=>{
+
+tabela.innerHTML += `
+<tr>
+<td><img class="capa" src="${l.capa}"></td>
+<td>${l.titulo}</td>
+<td>${l.autor}</td>
+<td>${l.disponivel?"Disponível":"Emprestado"}</td>
+</tr>
+`
+
+})
+
+</script>
+
+</body>
+</html>
