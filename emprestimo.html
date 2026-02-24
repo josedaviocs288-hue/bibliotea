@@ -10,14 +10,16 @@
 <style>
 
 body{
-background:#f4f6f9;
+background:#e3e3e8;
 font-family:Segoe UI;
 }
+
+/* MENU LATERAL */
 
 .menu{
 height:100vh;
 width:240px;
-background:#8B0000;
+background:#8B2E2E;
 position:fixed;
 left:-240px;
 top:0;
@@ -34,18 +36,22 @@ font-size:18px;
 }
 
 .menu a:hover{
-background:#a00000;
+background:#a03a3a;
 }
 
 .menu.active{
 left:0;
 }
 
+/* BOTÃO ABRIR MENU */
+
 .abrir{
 font-size:30px;
 cursor:pointer;
-color:#8B0000;
+color:#8B2E2E;
 }
+
+/* CARD */
 
 .card{
 max-width:700px;
@@ -55,18 +61,26 @@ border-radius:10px;
 box-shadow:0 4px 10px rgba(0,0,0,0.1);
 }
 
-input, select{
-background:#8B2E2E;
+/* CAMPOS */
 
+input, select{
 height:50px;
 font-size:17px;
 }
 
-button{
-background:#8B2E2E;
+/* BOTÃO */
 
+.btn-menu{
+background:#8B2E2E;
+color:white;
+border:none;
 height:50px;
 font-size:18px;
+}
+
+.btn-menu:hover{
+background:#a03a3a;
+color:white;
 }
 
 </style>
@@ -92,7 +106,7 @@ font-size:18px;
 <label>Data de devolução</label>
 <input type="date" class="form-control mb-4" id="devolucao">
 
-<button class="btn btn-warning w-100" onclick="emprestar()">
+<button class="btn btn-menu w-100" onclick="emprestar()">
 Emprestar Livro
 </button>
 
@@ -130,22 +144,22 @@ function fecharMenu(){
 document.getElementById("menu").classList.remove("active")
 }
 
-
 let livros = JSON.parse(localStorage.getItem("livros")) || []
 let leitores = JSON.parse(localStorage.getItem("leitores")) || []
 let emprestimos = JSON.parse(localStorage.getItem("emprestimos")) || []
 
+let livro = document.getElementById("livro")
+let leitor = document.getElementById("leitor")
 
 livros.forEach((l,i)=>{
 
-if(l.disponivel){
+if(l.disponivel !== false){
 
-livro.innerHTML += `<option value="${i}">${l.titulo}</option>`
+livro.innerHTML += `<option value="${i}">${l.nome}</option>`
 
 }
 
 })
-
 
 leitores.forEach((l,i)=>{
 
@@ -153,21 +167,22 @@ leitor.innerHTML += `<option value="${i}">${l.nome}</option>`
 
 })
 
-
 function emprestar(){
 
 let l = livro.value
 let p = leitor.value
 
+let devolucao = document.getElementById("devolucao").value
+
 emprestimos.push({
 
-livro:livros[l].titulo,
+livro:livros[l].nome,
 autor:livros[l].autor,
 genero:livros[l].genero,
-capa:livros[l].capa,
+imagem:livros[l].imagem,
 leitor:leitores[p].nome,
 data:new Date().toLocaleDateString(),
-devolucao:devolucao.value
+devolucao:devolucao
 
 })
 
