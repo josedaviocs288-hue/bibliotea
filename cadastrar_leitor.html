@@ -10,7 +10,7 @@
 <style>
 
 body{
-background:#f4f6f9;
+background:#ffffff;
 font-family:Segoe UI;
 }
 
@@ -48,27 +48,33 @@ color:#8B0000;
 }
 
 .card{
-
 max-width:800px;
 margin:auto;
 padding:30px;
 border-radius:10px;
 box-shadow:0 4px 10px rgba(0,0,0,0.1);
-
 }
 
 input{
-
 height:55px;
 font-size:18px;
-
 }
 
 button{
-
 height:55px;
 font-size:18px;
+}
 
+/* BOTÃO NA COR DO MENU */
+
+.btn-biblioteca{
+background:#8B0000;
+color:white;
+border:none;
+}
+
+.btn-biblioteca:hover{
+background:#a00000;
 }
 
 h2{
@@ -100,7 +106,7 @@ margin-bottom:20px;
 
 <input id="matricula" class="form-control mb-4" placeholder="Matrícula (opcional)">
 
-<button class="btn btn-primary w-100" onclick="salvarLeitor()">
+<button class="btn btn-biblioteca w-100" onclick="salvarLeitor()">
 Salvar Leitor
 </button>
 
